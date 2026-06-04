@@ -1,26 +1,96 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --void: #040506;
+  --canvas: #07080a;
+  --surface: #111214;
+  --surface-elevated: #1b1c1e;
+  --border: #363739;
+  --border-subtle: #454647;
+  --text-primary: #f5f5f5;
+  --text-secondary: #9c9c9d;
+  --text-muted: #6a6b6c;
+  --accent: #e6e6e6;
+  --accent-dim: #b8b8b9;
+  --glow: rgba(255, 255, 255, 0.04);
+  --max-width: 1200px;
+  --section-gap: clamp(5rem, 10vw, 7.5rem);
 }
 
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --color-void: var(--void);
+  --color-canvas: var(--canvas);
+  --color-surface: var(--surface);
+  --color-surface-elevated: var(--surface-elevated);
+  --color-border: var(--border);
+  --color-border-subtle: var(--border-subtle);
+  --color-text-primary: var(--text-primary);
+  --color-text-secondary: var(--text-secondary);
+  --color-text-muted: var(--text-muted);
+  --color-accent: var(--accent);
+  --color-accent-dim: var(--accent-dim);
+  --font-sans: var(--font-plex-sans);
+  --font-serif: var(--font-instrument-serif);
+  --font-mono: var(--font-plex-mono);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+html {
+  scroll-behavior: smooth;
+  color-scheme: dark;
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background-color: var(--void);
+  color: var(--text-primary);
+  font-family: var(--font-plex-sans), ui-sans-serif, system-ui, sans-serif;
+}
+
+::selection {
+  background: rgba(255, 255, 255, 0.15);
+  color: var(--text-primary);
+}
+
+.grain {
+  pointer-events: none;
+  position: fixed;
+  inset: 0;
+  z-index: 50;
+  opacity: 0.035;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+.hero-glow {
+  background:
+    radial-gradient(
+      ellipse 80% 50% at 50% -10%,
+      rgba(255, 255, 255, 0.06),
+      transparent 70%
+    ),
+    radial-gradient(
+      ellipse 60% 40% at 80% 20%,
+      rgba(120, 120, 120, 0.04),
+      transparent 65%
+    );
+}
+
+.card-surface {
+  background: linear-gradient(
+    145deg,
+    rgba(255, 255, 255, 0.03) 0%,
+    rgba(255, 255, 255, 0) 40%
+  );
+  border: 1px solid var(--border-subtle);
+  box-shadow:
+    0 0 0 1px rgba(0, 0, 0, 0.4),
+    0 24px 48px -12px rgba(0, 0, 0, 0.5);
+}
+
+.bento-wide {
+  grid-column: span 2;
+}
+
+@media (max-width: 768px) {
+  .bento-wide {
+    grid-column: span 1;
+  }
 }
