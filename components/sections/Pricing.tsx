@@ -6,7 +6,7 @@ import { Reveal } from "@/components/motion/Reveal";
 
 export function Pricing() {
   return (
-    <section id="pricing" className="py-[var(--section-gap)]">
+    <section id="pricing" className="py-(--section-gap)">
       <Container>
         <Reveal className="mb-14 md:mb-16">
           <SectionHeading

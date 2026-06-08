@@ -57,7 +57,7 @@ function FAQItem({
 
 export function FAQ() {
   return (
-    <section id="faq" className="border-t border-border-subtle/40 py-[var(--section-gap)]">
+    <section id="faq" className="border-t border-border-subtle/40 py-(--section-gap)">
       <Container>
         <Reveal className="mb-12 md:mb-16">
           <SectionHeading

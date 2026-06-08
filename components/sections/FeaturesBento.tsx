@@ -55,7 +55,7 @@ function BentoCard({
 
 export function FeaturesBento() {
   return (
-    <section id="features" className="py-[var(--section-gap)]">
+    <section id="features" className="py-(--section-gap)">
       <Container>
         <Reveal className="mb-14 md:mb-20">
           <SectionHeading

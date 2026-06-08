@@ -17,7 +17,7 @@ export function SystemMonitorMock() {
         {bars.map((h, i) => (
           <div
             key={i}
-            className="flex-1 rounded-sm bg-gradient-to-t from-border-subtle to-accent/70"
+            className="flex-1 rounded-sm bg-linear-to-t from-border-subtle to-accent/70"
             style={{ height: `${h}%` }}
           />
         ))}

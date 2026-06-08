@@ -6,11 +6,18 @@ import { motion, AnimatePresence } from "motion/react";
 import linesLogo from "../../public/lines.png";
 import { NAV_LINKS } from "@/lib/constants";
 import { Button } from "@/components/ui/Button";
-import { Container } from "@/components/ui/Container";
 
 export function Header() {
   const [scrolled, setScrolled] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
+  const [windowWidth, setWindowWidth] = useState(1200);
+
+  useEffect(() => {
+    const update = () => setWindowWidth(window.innerWidth);
+    update();
+    window.addEventListener("resize", update, { passive: true });
+    return () => window.removeEventListener("resize", update);
+  }, []);
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 12);
@@ -26,20 +33,31 @@ export function Header() {
     };
   }, [menuOpen]);
 
+  const isMobile = windowWidth < 768;
+
+  const expandedWidth = Math.min(1200, windowWidth - 32);
+  const collapsedWidth = isMobile
+    ? windowWidth - 32
+    : Math.min(896, windowWidth - 32);
+
   return (
-    <header className="fixed inset-x-0 top-8 z-40 flex justify-center px-4">
+    <header className="fixed inset-x-0 top-4 z-40 flex flex-col items-center px-4 md:top-8">
       <motion.nav
-      animate={{
-        width: scrolled ? "896px" : "1200px",
-        borderRadius: scrolled ? "16px" : "0px",
-        paddingLeft: scrolled ? "24px" : "0px",
-        paddingRight: scrolled ? "24px" : "0px",
-        backgroundColor: scrolled ? "rgba(4,5,6,0.95)" : "rgba(4,5,6,0)",
-        backdropFilter: scrolled ? "blur(20px) saturate(180%)" : "blur(0px) saturate(100%)",
-      }}
-      transition={{ duration: 0.4, ease: [0.4, 0, 0.2, 1] }}
-      className="flex h-16 items-center justify-between overflow-hidden md:h-18"
-    >
+        animate={{
+          width: scrolled ? collapsedWidth : expandedWidth,
+          borderRadius: scrolled ? "16px" : isMobile ? "12px" : "0px",
+          paddingLeft: scrolled || isMobile ? "20px" : "0px",
+          paddingRight: scrolled || isMobile ? "20px" : "0px",
+          backgroundColor:
+            scrolled || (isMobile && menuOpen)
+              ? "rgba(4,5,6,0.95)"
+              : "rgba(4,5,6,0)",
+          backdropFilter:
+            scrolled ? "blur(20px) saturate(180%)" : "blur(0px) saturate(100%)",
+        }}
+        transition={{ duration: 0.4, ease: [0.4, 0, 0.2, 1] }}
+        className="flex h-14 items-center justify-between md:h-16"
+      >
         <a
           href="#"
           className="flex items-center gap-2.5 text-text-primary transition-opacity hover:opacity-90"
@@ -77,13 +95,13 @@ export function Header() {
 
         <button
           type="button"
-          className="flex h-10 w-10 items-center justify-center rounded-lg border border-border-subtle text-text-secondary md:hidden"
+          className="flex h-9 w-9 items-center justify-center rounded-lg border border-border-subtle text-text-secondary md:hidden"
           aria-expanded={menuOpen}
           aria-label={menuOpen ? "Close menu" : "Open menu"}
           onClick={() => setMenuOpen((o) => !o)}
         >
           <span className="sr-only">Menu</span>
-          <svg width="18" height="14" viewBox="0 0 18 14" fill="none" aria-hidden>
+          <svg width="16" height="12" viewBox="0 0 18 14" fill="none" aria-hidden>
             <path
               d="M1 1h16M1 7h16M1 13h16"
               stroke="currentColor"
@@ -95,20 +113,29 @@ export function Header() {
       </motion.nav>
 
       <AnimatePresence>
-        {menuOpen ? (
+        {menuOpen && (
           <motion.div
             initial={{ opacity: 0, height: 0 }}
             animate={{ opacity: 1, height: "auto" }}
             exit={{ opacity: 0, height: 0 }}
-            className="overflow-hidden border-t border-border-subtle/60 bg-void md:hidden"
+            style={{ width: collapsedWidth }}
+            className="overflow-hidden rounded-b-2xl border-t border-border-subtle/30 bg-void/95 backdrop-blur-xl md:hidden"
           >
-            <Container className="flex flex-col gap-1 py-4">
+            <div className="flex flex-col gap-1 px-3 py-3">
               {NAV_LINKS.map((link) => (
                 <a
                   key={link.href}
                   href={link.href}
                   className="rounded-lg px-3 py-3 text-sm text-text-secondary hover:bg-surface hover:text-text-primary"
-                  onClick={() => setMenuOpen(false)}
+                  onClick={(e) => {
+                    e.preventDefault();
+                    setMenuOpen(false);
+                    document.body.style.overflow = "";
+                    const id = link.href.replace("#", "");
+                    setTimeout(() => {
+                      document.getElementById(id)?.scrollIntoView({ behavior: "smooth" });
+                    }, 300);
+                  }}
                 >
                   {link.label}
                 </a>
@@ -116,9 +143,9 @@ export function Header() {
               <Button variant="primary" href="#download" className="mt-2 w-full">
                 Download
               </Button>
-            </Container>
+            </div>
           </motion.div>
-        ) : null}
+        )}
       </AnimatePresence>
     </header>
   );

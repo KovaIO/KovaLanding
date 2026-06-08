@@ -45,7 +45,7 @@ function ShowcaseBlock({
 
 export function FeatureShowcase() {
   return (
-    <section className="border-t border-border-subtle/40 py-[var(--section-gap)]">
+    <section className="border-t border-border-subtle/40 py-(--section-gap)">
       <Container className="space-y-24 md:space-y-32">
         {SHOWCASE_FEATURES.map((feature, i) => (
           <Reveal key={feature.id} delay={i * 0.05}>

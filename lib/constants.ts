@@ -7,7 +7,6 @@ export const SITE = {
 
 export const NAV_LINKS = [
   { label: "Features", href: "#features" },
-  { label: "Privacy", href: "#privacy" },
   { label: "Pricing", href: "#pricing" },
   { label: "FAQ", href: "#faq" },
 ] as const;
@@ -137,27 +136,17 @@ export const FAQ_ITEMS = [
   {
     question: "Where is my data stored?",
     answer:
-      "Most data lives in a local SQLite database on your machine for speed and privacy. Optional cloud sync for Pro users is planned for clipboard, preferences, and workflows — always opt-in.",
+      "Data lives in a local SQLite database on your machine for speed and privacy. Optional cloud sync for Pro users is planned for clipboard, preferences and workflows.",
   },
   {
     question: "Which platforms are supported?",
     answer:
-      "Kova targets macOS and Windows with a shared codebase built on Tauri and Rust. Linux may follow based on demand.",
+      "Kova runs on macOS and Windows. Linux support may follow based on demand.",
   },
   {
     question: "How does Pro licensing work?",
     answer:
-      "You purchase a license through Polar.sh and receive a key that unlocks premium features on your devices. The app validates the license through a lightweight backend — no password to remember.",
-  },
-  {
-    question: "Is cloud sync required?",
-    answer:
-      "Never. Cloud sync is optional and designed for users who want clipboard or settings parity across machines. Local-first remains the default.",
-  },
-  {
-    question: "How is this different from a menu bar manager?",
-    answer:
-      "Kova combines monitoring, clipboard, cleanup, and launcher tools in one lightweight tray app — tuned for speed and a single global shortcut, not a pile of separate utilities.",
+      "Purchase a license and enter your key inside Kova to unlock Pro features. One key works across your devices. No subscriptions, pay once.",
   },
 ] as const;
 
@@ -173,7 +162,6 @@ export const FOOTER_COLUMNS = [
   {
     title: "Learn",
     links: [
-      { label: "Privacy", href: "#privacy" },
       { label: "FAQ", href: "#faq" },
     ],
   },
