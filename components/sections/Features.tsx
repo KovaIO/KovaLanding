@@ -53,16 +53,12 @@ function BentoCard({
   );
 }
 
-export function FeaturesBento() {
+export function Features() {
   return (
     <section id="features" className="py-(--section-gap)">
       <Container>
         <Reveal className="mb-14 md:mb-20">
-          <SectionHeading
-            eyebrow="Features"
-            title="Built for how you actually work"
-            description="Monitor, clip, launch, and clean — from one tray menu. Everything stays fast, local, and under your control."
-          />
+          <SectionHeading title="Built for how you actually work" />
         </Reveal>
 
         <div className="grid grid-cols-1 gap-4 md:grid-cols-3 md:gap-5">

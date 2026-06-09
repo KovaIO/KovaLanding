@@ -1,3 +1,6 @@
+"use client";
+
+import { useState } from "react";
 import { PRICING_PLANS } from "@/lib/constants";
 import { Button } from "@/components/ui/Button";
 import { Container } from "@/components/ui/Container";
@@ -5,15 +8,12 @@ import { SectionHeading } from "@/components/ui/SectionHeading";
 import { Reveal } from "@/components/motion/Reveal";
 
 export function Pricing() {
+  const [selectedOption, setSelectedOption] = useState("Monthly");
   return (
     <section id="pricing" className="py-(--section-gap)">
       <Container>
         <Reveal className="mb-14 md:mb-16">
-          <SectionHeading
-            eyebrow="Pricing"
-            title="Simple licensing, no accounts"
-            description="Start free with full local tools. Upgrade to Pro when you need premium features or optional cloud sync — activated with a license key, not a login form."
-          />
+          <SectionHeading title="Pricing" />
         </Reveal>
 
         <div className="mx-auto grid max-w-3xl gap-6 md:grid-cols-2 md:gap-8">
@@ -30,12 +30,50 @@ export function Pricing() {
                   <h3 className="text-lg font-semibold text-text-primary">
                     {plan.name}
                   </h3>
-                  <p className="mt-2 font-serif text-4xl text-text-primary">
-                    {plan.price}
-                  </p>
-                  <p className="mt-1 font-mono text-xs text-text-muted">
-                    {plan.period}
-                  </p>
+                  {"pricingOptions" in plan ? (
+                    <div className="mt-4">
+                      {/* Tab selector */}
+                      <div className="flex rounded-xl border border-border-subtle/40 bg-surface/40 p-1">
+                        {plan.pricingOptions.map((option) => (
+                          <button
+                            key={option.period}
+                            onClick={() => setSelectedOption(option.period)}
+                            className={`flex-1 rounded-lg py-1.5 text-xs font-medium transition-all duration-200 ${
+                              selectedOption === option.period
+                                ? "bg-accent text-void shadow-sm"
+                                : "text-text-muted hover:text-text-secondary"
+                            }`}
+                          >
+                            {option.period}
+                          </button>
+                        ))}
+                      </div>
+
+                      {/* Selected price display */}
+                      {plan.pricingOptions.filter((o) => o.period === selectedOption).map((option) => (
+                        <div key={option.period} className="mt-5 flex items-baseline justify-between">
+                          <div>
+                            <span className="font-serif text-4xl text-text-primary">{option.price}</span>
+                            <span className="ml-2 font-mono text-xs text-text-muted">
+                              {option.period === "Monthly" ? "/ month" : option.period === "Yearly" ? "/ year" : "one-time"}
+                            </span>
+                          </div>
+                          <span className="rounded-full border border-border-subtle/40 px-2.5 py-1 font-mono text-[10px] text-text-muted">
+                            {option.devices} device{option.devices !== 1 ? "s" : ""}
+                          </span>
+                        </div>
+                      ))}
+                    </div>
+                  ) : (
+                    <>
+                      <p className="mt-2 font-serif text-4xl text-text-primary">
+                        {plan.price}
+                      </p>
+                      <p className="mt-1 font-mono text-xs text-text-muted">
+                        {plan.period}
+                      </p>
+                    </>
+                  )}
                   <p className="mt-4 text-sm text-text-secondary">
                     {plan.description}
                   </p>
@@ -55,13 +93,23 @@ export function Pricing() {
                   ))}
                 </ul>
 
-                <Button
-                  variant={plan.highlighted ? "primary" : "secondary"}
-                  href="#download"
-                  className="w-full text-center"
-                >
-                  {plan.cta}
-                </Button>
+                {"pricingOptions" in plan ? (
+                  <Button
+                    variant="primary"
+                    href="#download"
+                    className="w-full text-center"
+                  >
+                    Get {selectedOption} — {plan.pricingOptions.find((o) => o.period === selectedOption)?.price}
+                  </Button>
+                ) : (
+                  <Button
+                    variant={plan.highlighted ? "primary" : "secondary"}
+                    href="#download"
+                    className="w-full text-center"
+                  >
+                    {plan.cta}
+                  </Button>
+                )}
               </article>
             </Reveal>
           ))}
@@ -69,8 +117,7 @@ export function Pricing() {
 
         <Reveal delay={0.15}>
           <p className="mx-auto mt-10 max-w-lg text-center text-sm text-text-muted">
-            Payments and license activation are not wired on this page yet.
-            Pro will be available through Polar.sh when launched.
+            Additional 30 days money back guarantee for all licenses.
           </p>
         </Reveal>
       </Container>

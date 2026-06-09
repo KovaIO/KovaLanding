@@ -57,14 +57,10 @@ function FAQItem({
 
 export function FAQ() {
   return (
-    <section id="faq" className="border-t border-border-subtle/40 py-(--section-gap)">
+    <section id="faq" className="py-(--section-gap)">
       <Container>
         <Reveal className="mb-12 md:mb-16">
-          <SectionHeading
-            eyebrow="FAQ"
-            title="Common questions"
-            description="Everything you need to know about how Kova works, stores data, and handles licensing."
-          />
+          <SectionHeading title="FAQ" />
         </Reveal>
 
         <ul className="mx-auto max-w-2xl">

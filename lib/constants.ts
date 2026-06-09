@@ -11,8 +11,6 @@ export const NAV_LINKS = [
   { label: "FAQ", href: "#faq" },
 ] as const;
 
-export const PLATFORMS = ["macOS", "Windows"] as const;
-
 export const BENTO_FEATURES = [
   {
     id: "monitoring",
@@ -70,27 +68,6 @@ export const BENTO_FEATURES = [
   },
 ] as const;
 
-export const SHOWCASE_FEATURES = [
-  {
-    id: "tray-first",
-    eyebrow: "Tray-first design",
-    title: "Built to live in the background, ready when you are.",
-    description:
-      "Kova stays in your system tray and responds to global shortcuts in milliseconds. No dock icon clutter, no window hunting — open, act, dismiss.",
-    visual: "tray" as const,
-    reversed: false,
-  },
-  {
-    id: "performance",
-    eyebrow: "Native performance",
-    title: "Rust under the hood. Light on your machine.",
-    description:
-      "Tauri keeps the footprint small while delivering a polished UI. Fast cold starts, low RAM usage, and the snappy feel of a native utility — not another Electron hog.",
-    visual: "monitor" as const,
-    reversed: true,
-  },
-] as const;
-
 export const PRICING_PLANS = [
   {
     id: "free",
@@ -100,10 +77,8 @@ export const PRICING_PLANS = [
     description: "Everything you need to organize your desktop locally.",
     features: [
       "System monitoring",
-      "Clipboard history (local)",
-      "Quick actions & launcher",
-      "Disk cleanup basics",
-      "Workflow customization",
+      "Limited clipboard history",
+      "Customizing",
     ],
     cta: "Download",
     highlighted: false,
@@ -111,18 +86,22 @@ export const PRICING_PLANS = [
   {
     id: "pro",
     name: "Pro",
-    price: "Coming soon",
-    period: "license via Polar.sh",
-    description:
-      "Premium tools and optional cloud sync — no accounts, just a license key.",
+    price: "$2.99",
+    period: "per month",
+    description: "Premium tools for power users.",
     features: [
       "Everything in Free",
-      "Advanced cleanup & automation",
-      "Cloud clipboard sync (optional)",
-      "Cross-device preferences",
-      "Priority updates",
+      "Unlimited clipboard",
+      "Monitoring dimming",
+      "Disk cleanup",
+      "Workspace profiles",
     ],
-    cta: "Notify me",
+    pricingOptions: [
+      { period: "Monthly", price: "$2.99", devices: 1 },
+      { period: "Yearly", price: "$24", devices: 3 },
+      { period: "Lifetime", price: "$59", devices: 3 },
+    ],
+    cta: "Get started",
     highlighted: true,
   },
 ] as const;
@@ -131,7 +110,7 @@ export const FAQ_ITEMS = [
   {
     question: "Do I need to create an account?",
     answer:
-      "No. Kova does not use traditional accounts or passwords. Free features work entirely offline with local storage. Pro licensing uses a simple license key — no login forms.",
+      "No. Free features work entirely offline with local storage. Pro licensing uses just your email, no login forms.",
   },
   {
     question: "Where is my data stored?",
@@ -146,7 +125,7 @@ export const FAQ_ITEMS = [
   {
     question: "How does Pro licensing work?",
     answer:
-      "Purchase a license and enter your key inside Kova to unlock Pro features. One key works across your devices. No subscriptions, pay once.",
+      "Enter your email inside Kova to unlock Pro features.",
   },
 ] as const;
 
