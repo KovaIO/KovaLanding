@@ -7,6 +7,7 @@ type ButtonProps = {
   variant?: ButtonVariant;
   className?: string;
   href?: string;
+  onClick?: () => void;
 };
 
 const variantStyles: Record<ButtonVariant, string> = {
@@ -22,13 +23,18 @@ export function Button({
   children,
   variant = "primary",
   className = "",
-  href = "#download",
+  href,
+  onClick,
 }: ButtonProps) {
   const base =
     "inline-flex items-center justify-center gap-2 rounded-lg px-5 py-2.5 text-sm font-medium tracking-wide transition-colors duration-200 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent";
 
   return (
-    <a href={href} className={`${base} ${variantStyles[variant]} ${className}`}>
+    <a
+      href={href}
+      className={`${base} ${variantStyles[variant]} ${className}`}
+      onClick={onClick}
+    >
       {children}
     </a>
   );

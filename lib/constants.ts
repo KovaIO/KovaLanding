@@ -75,11 +75,7 @@ export const PRICING_PLANS = [
     price: "$0",
     period: "forever",
     description: "Everything you need to organize your desktop locally.",
-    features: [
-      "System monitoring",
-      "Limited clipboard history",
-      "Customizing",
-    ],
+    features: ["System monitoring", "Limited clipboard history", "Customizing"],
     cta: "Download",
     highlighted: false,
   },
@@ -97,9 +93,24 @@ export const PRICING_PLANS = [
       "Workspace profiles",
     ],
     pricingOptions: [
-      { period: "Monthly", price: "$2.99", devices: 1 },
-      { period: "Yearly", price: "$24", devices: 3 },
-      { period: "Lifetime", price: "$59", devices: 3 },
+      {
+        productId: "a6154172-e7a1-424f-9da5-846f37f9eba8",
+        period: "Monthly",
+        price: "$2.99",
+        devices: 1,
+      },
+      {
+        productId: "188f181b-a33b-4224-90a5-0793a47d0bea",
+        period: "Yearly",
+        price: "$24",
+        devices: 3,
+      },
+      {
+        productId: "3f627530-068c-4815-bb1b-6b6adc36a674",
+        period: "Lifetime",
+        price: "$59",
+        devices: 3,
+      },
     ],
     cta: "Get started",
     highlighted: true,
@@ -124,8 +135,7 @@ export const FAQ_ITEMS = [
   },
   {
     question: "How does Pro licensing work?",
-    answer:
-      "Enter your email inside Kova to unlock Pro features.",
+    answer: "Enter your email inside Kova to unlock Pro features.",
   },
 ] as const;
 
@@ -140,9 +150,7 @@ export const FOOTER_COLUMNS = [
   },
   {
     title: "Learn",
-    links: [
-      { label: "FAQ", href: "#faq" },
-    ],
+    links: [{ label: "FAQ", href: "#faq" }],
   },
   {
     title: "Connect",

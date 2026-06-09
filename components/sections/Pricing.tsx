@@ -6,9 +6,14 @@ import { Button } from "@/components/ui/Button";
 import { Container } from "@/components/ui/Container";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 import { Reveal } from "@/components/motion/Reveal";
+import { CheckoutModal } from "../ui/CheckoutModal";
 
 export function Pricing() {
   const [selectedOption, setSelectedOption] = useState("Monthly");
+
+  const [checkoutOpen, setCheckoutOpen] = useState(false);
+  const [selectedProduct, setSelectedProduct] = useState("");
+
   return (
     <section id="pricing" className="py-(--section-gap)">
       <Container>
@@ -50,19 +55,31 @@ export function Pricing() {
                       </div>
 
                       {/* Selected price display */}
-                      {plan.pricingOptions.filter((o) => o.period === selectedOption).map((option) => (
-                        <div key={option.period} className="mt-5 flex items-baseline justify-between">
-                          <div>
-                            <span className="font-serif text-4xl text-text-primary">{option.price}</span>
-                            <span className="ml-2 font-mono text-xs text-text-muted">
-                              {option.period === "Monthly" ? "/ month" : option.period === "Yearly" ? "/ year" : "one-time"}
+                      {plan.pricingOptions
+                        .filter((o) => o.period === selectedOption)
+                        .map((option) => (
+                          <div
+                            key={option.period}
+                            className="mt-5 flex items-baseline justify-between"
+                          >
+                            <div>
+                              <span className="font-serif text-4xl text-text-primary">
+                                {option.price}
+                              </span>
+                              <span className="ml-2 font-mono text-xs text-text-muted">
+                                {option.period === "Monthly"
+                                  ? "/ month"
+                                  : option.period === "Yearly"
+                                    ? "/ year"
+                                    : "one-time"}
+                              </span>
+                            </div>
+                            <span className="rounded-full border border-border-subtle/40 px-2.5 py-1 font-mono text-[10px] text-text-muted">
+                              {option.devices} device
+                              {option.devices !== 1 ? "s" : ""}
                             </span>
                           </div>
-                          <span className="rounded-full border border-border-subtle/40 px-2.5 py-1 font-mono text-[10px] text-text-muted">
-                            {option.devices} device{option.devices !== 1 ? "s" : ""}
-                          </span>
-                        </div>
-                      ))}
+                        ))}
                     </div>
                   ) : (
                     <>
@@ -96,15 +113,23 @@ export function Pricing() {
                 {"pricingOptions" in plan ? (
                   <Button
                     variant="primary"
-                    href="#download"
                     className="w-full text-center"
+                    onClick={() => {
+                      const option = plan.pricingOptions.find(
+                        (o) => o.period === selectedOption,
+                      );
+
+                      if (!option) return;
+
+                      setSelectedProduct(option.productId);
+                      setCheckoutOpen(true);
+                    }}
                   >
-                    Get {selectedOption} — {plan.pricingOptions.find((o) => o.period === selectedOption)?.price}
+                    Get {selectedOption}
                   </Button>
                 ) : (
                   <Button
                     variant={plan.highlighted ? "primary" : "secondary"}
-                    href="#download"
                     className="w-full text-center"
                   >
                     {plan.cta}
@@ -120,6 +145,14 @@ export function Pricing() {
             Additional 30 days money back guarantee for all licenses.
           </p>
         </Reveal>
+
+        {checkoutOpen && (
+          <CheckoutModal
+            open={checkoutOpen}
+            productId={selectedProduct}
+            onClose={() => setCheckoutOpen(false)}
+          />
+        )}
       </Container>
     </section>
   );
