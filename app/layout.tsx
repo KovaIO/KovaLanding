@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { IBM_Plex_Mono, IBM_Plex_Sans } from "next/font/google";
 import { Instrument_Serif } from "next/font/google";
 import "./globals.css";
+import { GoogleAnalytics } from "@next/third-parties/google";
 
 const plexSans = IBM_Plex_Sans({
   variable: "--font-plex-sans",
@@ -46,6 +47,8 @@ export default function RootLayout({
       <body className="min-h-full flex flex-col bg-void text-text-primary">
         <div className="grain" aria-hidden />
         {children}
+
+        <GoogleAnalytics gaId="G-3LMLQNKWSR" />
       </body>
     </html>
   );
