@@ -1,29 +1,18 @@
-import type { ReactNode } from "react";
-import { ClipboardMock } from "./ClipboardMock";
-import { DiskCleanupMock } from "./DiskCleanupMock";
-import { LauncherMock } from "./LauncherMock";
-import { SystemMonitorMock } from "./SystemMonitorMock";
-import { TrayMock } from "./TrayMock";
-import { WorkflowMock } from "./WorkflowMock";
-
-export type VisualType =
-  | "monitor"
-  | "clipboard"
-  | "launcher"
-  | "cleanup"
-  | "workflow"
-  | "tray";
-
-const visuals: Record<VisualType, () => ReactNode> = {
-  monitor: () => <SystemMonitorMock />,
-  clipboard: () => <ClipboardMock />,
-  launcher: () => <LauncherMock />,
-  cleanup: () => <DiskCleanupMock />,
-  workflow: () => <WorkflowMock />,
-  tray: () => <TrayMock />,
+export type VideoInfo = {
+  src: string;
+  orientation: "vertical" | "horizontal";
 };
 
-export function FeatureVisual({ type }: { type: VisualType }) {
-  const Visual = visuals[type];
-  return <Visual />;
+export function FeatureVisual({ video }: { video: VideoInfo }) {
+  return (
+    <video
+      src={video.src}
+      autoPlay
+      loop
+      muted
+      playsInline
+      style={{ pointerEvents: "none", userSelect: "none" }}
+      className="h-full w-full object-cover"
+    />
+  );
 }

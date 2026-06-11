@@ -5,50 +5,65 @@ import { Badge } from "@/components/ui/Badge";
 import { Container } from "@/components/ui/Container";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 import { Reveal } from "@/components/motion/Reveal";
-import {
-  FeatureVisual,
-  type VisualType,
-} from "@/components/visuals/FeatureVisual";
+import { FeatureVisual } from "@/components/visuals/FeatureVisual";
+import { ComingSoon } from "@/components/visuals/ComingSoon";
+
+type VideoInfo = {
+  src: string;
+  orientation: "vertical" | "horizontal";
+};
 
 function BentoCard({
   badge,
   title,
   description,
-  visual,
   layout,
   index,
+  video,
 }: {
   badge: string;
   title: string;
   description: string;
-  visual: VisualType;
   layout: "wide" | "narrow";
   index: number;
+  video: VideoInfo | null;
 }) {
   const isWide = layout === "wide";
+  const isVertical = video?.orientation === "vertical";
 
   return (
     <Reveal
       as="article"
       delay={index * 0.06}
       className={`card-surface flex flex-col overflow-hidden rounded-2xl md:rounded-3xl ${
-        isWide ? "bento-wide md:min-h-[420px]" : "md:min-h-[420px]"
+        isWide ? "bento-wide" : ""
       }`}
     >
-      <div className="flex flex-1 flex-col p-6 md:p-8">
+      <div className="flex flex-col p-6 md:p-8">
         <Badge>{badge}</Badge>
-        <h3 className="mt-4 max-w-md font-serif text-2xl leading-snug text-text-primary md:text-[1.65rem]">
+        <h3 className="mt-4 font-serif text-2xl leading-snug text-text-primary md:text-[1.65rem]">
           {title}
         </h3>
-        <p className="mt-3 max-w-md text-sm leading-relaxed text-text-secondary md:text-[15px]">
+        <p className="mt-3 text-sm leading-relaxed text-text-secondary md:text-[15px]">
           {description}
         </p>
-        <div className="mt-6 flex flex-1 items-end">
-          <div className="w-full [&>div]:min-h-[180px] md:[&>div]:min-h-[200px]">
-            <FeatureVisual type={visual} />
+      </div>
+
+      {video ? (
+        <div className="flex flex-1 items-center justify-center px-6 pb-6 md:px-8 md:pb-8">
+          <div
+            className="w-full overflow-hidden rounded-xl border border-border-subtle/40"
+            style={{
+              maxWidth: isVertical ? "240px" : "100%",
+              aspectRatio: isVertical ? "404 / 694" : "1152 / 648",
+            }}
+          >
+            <FeatureVisual video={video} />
           </div>
         </div>
-      </div>
+      ) : (
+        <ComingSoon />
+      )}
     </Reveal>
   );
 }
@@ -68,8 +83,8 @@ export function Features() {
               badge={feature.badge}
               title={feature.title}
               description={feature.description}
-              visual={feature.visual}
               layout={feature.layout}
+              video={feature.video}
               index={index}
             />
           ))}
