@@ -17,14 +17,18 @@ function FAQItem({
   index: number;
 }) {
   const [open, setOpen] = useState(index === 0);
+  const panelId = `faq-panel-${index}`;
+  const buttonId = `faq-button-${index}`;
 
   return (
     <Reveal as="li" delay={index * 0.04}>
       <div className="border-b border-border-subtle/60">
         <button
           type="button"
-          className="flex w-full items-start justify-between gap-4 py-5 text-left"
+          id={buttonId}
           aria-expanded={open}
+          aria-controls={panelId}
+          className="flex w-full items-start justify-between gap-4 py-5 text-left"
           onClick={() => setOpen((o) => !o)}
         >
           <span className="font-medium text-text-primary">{question}</span>
@@ -38,6 +42,9 @@ function FAQItem({
         <AnimatePresence initial={false}>
           {open ? (
             <motion.div
+              id={panelId}
+              role="region"
+              aria-labelledby={buttonId}
               initial={{ height: 0, opacity: 0 }}
               animate={{ height: "auto", opacity: 1 }}
               exit={{ height: 0, opacity: 0 }}

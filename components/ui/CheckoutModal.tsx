@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 
 type Props = {
   open: boolean;
@@ -11,8 +11,55 @@ type Props = {
 export function CheckoutModal({ open, onClose, productId }: Props) {
   const [email, setEmail] = useState("");
   const [loading, setLoading] = useState(false);
+  const dialogRef = useRef<HTMLDivElement>(null);
+  const previousFocusRef = useRef<HTMLElement | null>(null);
+  const emailInputRef = useRef<HTMLInputElement>(null);
 
-  if (!open) return null;
+  useEffect(() => {
+    if (open) {
+      previousFocusRef.current = document.activeElement as HTMLElement;
+      setTimeout(() => emailInputRef.current?.focus(), 50);
+    }
+    return () => {
+      previousFocusRef.current?.focus();
+    };
+  }, [open]);
+
+  useEffect(() => {
+    if (!open) return;
+
+    function handleKeyDown(e: KeyboardEvent) {
+      if (e.key === "Escape") {
+        onClose();
+        return;
+      }
+
+      if (e.key === "Tab" && dialogRef.current) {
+        const focusable = dialogRef.current.querySelectorAll<HTMLElement>(
+          'input, button, [tabindex]:not([tabindex="-1"])',
+        );
+        if (focusable.length === 0) return;
+
+        const first = focusable[0];
+        const last = focusable[focusable.length - 1];
+
+        if (e.shiftKey) {
+          if (document.activeElement === first) {
+            e.preventDefault();
+            last.focus();
+          }
+        } else {
+          if (document.activeElement === last) {
+            e.preventDefault();
+            first.focus();
+          }
+        }
+      }
+    }
+
+    document.addEventListener("keydown", handleKeyDown);
+    return () => document.removeEventListener("keydown", handleKeyDown);
+  }, [open, onClose]);
 
   async function checkout() {
     if (!email.trim()) return;
@@ -50,17 +97,23 @@ export function CheckoutModal({ open, onClose, productId }: Props) {
     }
   }
 
+  if (!open) return null;
+
   return (
     <div
       className="fixed inset-0 z-50 flex items-center justify-center bg-void/80 backdrop-blur-sm"
       onClick={onClose}
     >
       <div
+        ref={dialogRef}
+        role="dialog"
+        aria-modal="true"
+        aria-labelledby="checkout-title"
         className="card-surface w-full max-w-md rounded-3xl p-8"
         onClick={(e) => e.stopPropagation()}
       >
         <div className="mb-6">
-          <h3 className="font-serif text-3xl text-text-primary">
+          <h3 id="checkout-title" className="font-serif text-3xl text-text-primary">
             Purchase License
           </h3>
 
@@ -70,11 +123,16 @@ export function CheckoutModal({ open, onClose, productId }: Props) {
         </div>
 
         <div>
-          <label className="mb-2 block font-mono text-xs uppercase tracking-wide text-text-muted">
+          <label
+            htmlFor="checkout-email"
+            className="mb-2 block font-mono text-xs uppercase tracking-wide text-text-muted"
+          >
             Email
           </label>
 
           <input
+            ref={emailInputRef}
+            id="checkout-email"
             type="email"
             value={email}
             onChange={(e) => setEmail(e.target.value)}

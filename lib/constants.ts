@@ -149,8 +149,8 @@ export const FOOTER_COLUMNS = [
   {
     title: "Connect",
     links: [
-      { label: "GitHub", href: "#" },
-      { label: "Contact", href: "#" },
+      { label: "campfire.softwaredev@gmail.com", href: "" },
+      { label: "@Kevin_rh0", href: "https://x.com/Kevin_rh0" },
     ],
   },
 ] as const;

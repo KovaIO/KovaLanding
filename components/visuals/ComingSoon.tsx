@@ -3,12 +3,12 @@
 import { motion } from "motion/react";
 
 const ICONS = [
-  { label: "Window management", angle: 0, radius: 80 },
-  { label: "Focus mode", angle: 60, radius: 90 },
-  { label: "Notes", angle: 120, radius: 75 },
-  { label: "Automations", angle: 180, radius: 85 },
-  { label: "Notifications", angle: 240, radius: 78 },
-  { label: "File manager", angle: 300, radius: 88 },
+  { label: "Window management", x: 80, y: 0, radius: 80 },
+  { label: "Focus mode", x: 45, y: 77.94, radius: 90 },
+  { label: "Notes", x: -37.5, y: 64.95, radius: 75 },
+  { label: "Automations", x: -85, y: 0, radius: 85 },
+  { label: "Notifications", x: -39, y: -67.55, radius: 78 },
+  { label: "File manager", x: 44, y: -76.21, radius: 88 },
 ];
 
 function Icon({ index }: { index: number }) {
@@ -64,54 +64,48 @@ export function ComingSoon() {
           className="h-1.5 w-1.5 rounded-full bg-text-muted"
         />
 
-        {ICONS.map((item, i) => {
-          const angleRad = (item.angle * Math.PI) / 180;
-          const x = Math.cos(angleRad) * item.radius;
-          const y = Math.sin(angleRad) * item.radius;
-
-          return (
+        {ICONS.map((item, i) => (
+          <motion.div
+            key={item.label}
+            animate={{ rotate: 360 }}
+            transition={{
+              duration: 24,
+              repeat: Infinity,
+              ease: "linear",
+            }}
+            style={{
+              position: "absolute",
+              width: item.radius * 2,
+              height: item.radius * 2,
+            }}
+            className="left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2"
+          >
             <motion.div
-              key={item.label}
-              animate={{ rotate: 360 }}
-              transition={{
-                duration: 24,
-                repeat: Infinity,
-                ease: "linear",
-              }}
+              animate={{ rotate: -360 }}
+              transition={{ duration: 24, repeat: Infinity, ease: "linear" }}
               style={{
                 position: "absolute",
-                width: item.radius * 2,
-                height: item.radius * 2,
+                left: `calc(50% + ${item.x}px)`,
+                top: `calc(50% + ${item.y}px)`,
+                transform: "translate(-50%, -50%)",
               }}
-              className="left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2"
             >
               <motion.div
-                animate={{ rotate: -360 }}
-                transition={{ duration: 24, repeat: Infinity, ease: "linear" }}
-                style={{
-                  position: "absolute",
-                  left: `calc(50% + ${x}px)`,
-                  top: `calc(50% + ${y}px)`,
-                  transform: "translate(-50%, -50%)",
+                animate={{ opacity: [0.25, 0.55, 0.25] }}
+                transition={{
+                  duration: 2.5,
+                  repeat: Infinity,
+                  ease: "easeInOut",
+                  delay: i * 0.4,
                 }}
+                className="flex h-8 w-8 items-center justify-center rounded-lg border border-border-subtle/40 bg-surface text-text-muted"
+                title={item.label}
               >
-                <motion.div
-                  animate={{ opacity: [0.25, 0.55, 0.25] }}
-                  transition={{
-                    duration: 2.5,
-                    repeat: Infinity,
-                    ease: "easeInOut",
-                    delay: i * 0.4,
-                  }}
-                  className="flex h-8 w-8 items-center justify-center rounded-lg border border-border-subtle/40 bg-surface text-text-muted"
-                  title={item.label}
-                >
-                  <Icon index={i} />
-                </motion.div>
+                <Icon index={i} />
               </motion.div>
             </motion.div>
-          );
-        })}
+          </motion.div>
+        ))}
       </div>
     </div>
   );
