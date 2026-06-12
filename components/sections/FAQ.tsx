@@ -67,7 +67,10 @@ export function FAQ() {
     <section id="faq" className="py-(--section-gap)">
       <Container>
         <Reveal className="mb-12 md:mb-16">
-          <SectionHeading title="FAQ" />
+          <SectionHeading
+            title="FAQ"
+            description="Quick answers about Kova."
+          />
         </Reveal>
 
         <ul className="mx-auto max-w-2xl">

@@ -1,6 +1,7 @@
 import type { Metadata, Viewport } from "next";
 import { IBM_Plex_Mono, IBM_Plex_Sans } from "next/font/google";
 import { Instrument_Serif } from "next/font/google";
+import { SITE } from "@/lib/constants";
 import "./globals.css";
 
 const plexSans = IBM_Plex_Sans({
@@ -29,25 +30,31 @@ export const viewport: Viewport = {
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://kova.app"),
-  title: "Kova — Desktop utility for productivity & system control",
-  description:
-    "Fast, lightweight tray utility for system monitoring, clipboard history, quick actions, and disk cleanup. Local-first. Windows & macOS.",
+  title: `${SITE.name} — ${SITE.tagline}`,
+  description: SITE.description,
   alternates: {
     canonical: "/",
   },
   openGraph: {
-    title: "Kova — Your workspace, one menu away",
-    description:
-      "Native desktop utility built with Tauri and Rust. Monitor, clip, launch, and clean — from the system tray.",
+    title: `${SITE.name} — ${SITE.tagline}`,
+    description: SITE.description,
     type: "website",
-    siteName: "Kova",
+    siteName: SITE.name,
     url: "https://kova.app",
+    images: [
+      {
+        url: "/opengraph.jpg",
+        width: 1200,
+        height: 630,
+        alt: `${SITE.name} — ${SITE.tagline}`,
+      },
+    ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "Kova — Your workspace, one menu away",
-    description:
-      "Native desktop utility built with Tauri and Rust. Monitor, clip, launch, and clean — from the system tray.",
+    title: `${SITE.name} — ${SITE.tagline}`,
+    description: SITE.description,
+    images: ["/opengraph.png"],
   },
 };
 

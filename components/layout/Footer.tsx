@@ -1,8 +1,8 @@
-import { FOOTER_COLUMNS } from "@/lib/constants";
+import { FOOTER_COLUMNS, SITE } from "@/lib/constants";
 import { Container } from "@/components/ui/Container";
 
 export function Footer() {
-  // const year = new Date().getFullYear();
+  const year = new Date().getFullYear();
 
   return (
     <footer className="border-t border-border-subtle/60 bg-canvas py-16 md:py-20">
@@ -30,7 +30,7 @@ export function Footer() {
         </div>
 
         {/* <div className="mt-14 flex flex-col gap-2 border-t border-border-subtle/40 pt-8 text-sm text-text-muted sm:flex-row sm:items-center sm:justify-between">
-          <p>© {year} {SITE.name}. All rights reserved.</p>
+          <p>&copy; {year} {SITE.name}. All rights reserved.</p>
         </div> */}
       </Container>
     </footer>

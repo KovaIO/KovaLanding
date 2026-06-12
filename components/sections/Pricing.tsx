@@ -18,7 +18,10 @@ export function Pricing() {
     <section id="pricing" className="py-(--section-gap)">
       <Container>
         <Reveal className="mb-14 md:mb-16">
-          <SectionHeading title="Pricing" />
+          <SectionHeading
+            title="Pricing"
+            description="Start free. Upgrade when you need more."
+          />
         </Reveal>
 
         <div className="mx-auto grid max-w-3xl gap-6 md:grid-cols-2 md:gap-8">

@@ -2,7 +2,7 @@ export const SITE = {
   name: "Kova",
   tagline: "Your workspace, one menu away.",
   description:
-    "A fast, lightweight desktop utility for system monitoring, clipboard history, quick actions, and workspace control. Built with Tauri and Rust for Windows and macOS.",
+    "A lightweight desktop utility for system monitoring, clipboard history, workspace profiles, and disk cleanup. Built with Tauri and Rust, runs from the tray on Windows and macOS.",
 } as const;
 
 export const NAV_LINKS = [
@@ -15,16 +15,16 @@ export const BENTO_FEATURES = [
   {
     id: "workflow",
     badge: "Workflows",
-    title: "Shape the app around how you work.",
-    description: "Customize shortcuts, layouts, and which tools surface first. Your setup, not ours.",
+    title: "Launch your setup in one click.",
+    description: "Create workspace profiles that open and arrange your apps exactly where you want them.",
     layout: "wide",
     video: { src: "/Workspaces.mp4", orientation: "horizontal" },
   },
   {
     id: "monitoring",
     badge: "System Monitor",
-    title: "See what your machine is doing at a glance.",
-    description: "CPU, memory, network, and disk — live metrics in a compact panel that stays out of your way until you need it.",
+    title: "CPU, RAM, disk and network at a glance.",
+    description: "Live resource metrics with per-process breakdowns. Spot what's slowing you down.",
     layout: "narrow",
     video: { src: "/Metrics.mp4", orientation: "vertical" },
   },
@@ -32,15 +32,15 @@ export const BENTO_FEATURES = [
     id: "clipboard",
     badge: "Clipboard",
     title: "Everything you copied, still there.",
-    description: "Searchable history with instant paste. Local-first storage keeps it fast and private.",
+    description: "Searchable history for text and images. Paste, save, or open in Explorer. All stored locally.",
     layout: "narrow",
     video: { src: "/Clipboard.mp4", orientation: "vertical" },
   },
   {
     id: "tray",
     badge: "Tray Native",
-    title: "Always one shortcut away.",
-    description: "Lives in the system tray. Opens instantly — low memory, native performance on every platform.",
+    title: "One shortcut away.",
+    description: "Runs quietly in the system tray with native performance.",
     layout: "wide",
     video: { src: "/Tray.mp4", orientation: "horizontal" },
   },
@@ -48,7 +48,7 @@ export const BENTO_FEATURES = [
     id: "cleanup",
     badge: "Disk Cleanup",
     title: "Reclaim space without the guesswork.",
-    description: "Scan caches, logs, and large folders. Review before you delete — nothing happens without your say.",
+    description: "Scan caches, logs and large folders. Review before you delete. Nothing happens without your say.",
     layout: "narrow",
     video: { src: "/Disk.mp4", orientation: "vertical" },
   },
@@ -82,7 +82,6 @@ export const PRICING_PLANS = [
     features: [
       "Everything in Free",
       "Unlimited clipboard",
-      "Monitoring dimming",
       "Disk cleanup",
       "Workspace profiles",
     ],
@@ -115,21 +114,21 @@ export const FAQ_ITEMS = [
   {
     question: "Do I need to create an account?",
     answer:
-      "No. Free features work entirely offline with local storage. Pro licensing uses just your email, no login forms.",
+      "No. All free features work entirely offline. Pro licensing uses just your email, no login forms or accounts required.",
   },
   {
     question: "Where is my data stored?",
     answer:
-      "Data lives in a local SQLite database on your machine for speed and privacy. Optional cloud sync for Pro users is planned for clipboard, preferences and workflows.",
+      "Everything stays on your machine in a local SQLite database. Your clipboard, settings and workflows never leave your device.",
   },
   {
     question: "Which platforms are supported?",
     answer:
-      "Kova runs on macOS and Windows. Linux support may follow based on demand.",
+      "Kova runs on macOS and Windows with native performance. Linux support is planned.",
   },
   {
     question: "How does Pro licensing work?",
-    answer: "Enter your email inside Kova to unlock Pro features.",
+    answer: "Enter your email inside Kova to unlock Pro features instantly.",
   },
 ] as const;
 

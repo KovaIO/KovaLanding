@@ -29,13 +29,19 @@ export function Button({
   const base =
     "inline-flex items-center justify-center gap-2 rounded-lg px-5 py-2.5 text-sm font-medium tracking-wide transition-colors duration-200 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent";
 
+  const classes = `${base} ${variantStyles[variant]} ${className}`;
+
+  if (href) {
+    return (
+      <a href={href} className={classes} onClick={onClick}>
+        {children}
+      </a>
+    );
+  }
+
   return (
-    <a
-      href={href}
-      className={`${base} ${variantStyles[variant]} ${className}`}
-      onClick={onClick}
-    >
+    <button type="button" className={classes} onClick={onClick}>
       {children}
-    </a>
+    </button>
   );
 }

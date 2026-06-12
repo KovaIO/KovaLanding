@@ -73,7 +73,10 @@ export function Features() {
     <section id="features" className="py-(--section-gap)">
       <Container>
         <Reveal className="mb-14 md:mb-20">
-          <SectionHeading title="Built for how you actually work" />
+          <SectionHeading
+            title="Five tools. One app."
+            description="Everything your desktop is missing, without the bloat."
+          />
         </Reveal>
 
         <div className="grid grid-cols-1 gap-4 md:grid-cols-3 md:gap-5">
