@@ -4,14 +4,13 @@ import { Hero } from "@/components/sections/Hero";
 import { Features } from "@/components/sections/Features";
 import { Pricing } from "@/components/sections/Pricing";
 import { FAQ } from "@/components/sections/FAQ";
-import { FAQ_ITEMS } from "@/lib/constants";
+import { FAQ_ITEMS, SITE } from "@/lib/constants";
 
 const softwareSchema = {
   "@context": "https://schema.org",
   "@type": "SoftwareApplication",
-  name: "Kova",
-  description:
-    "A fast, lightweight desktop utility for system monitoring, clipboard history, quick actions, and workspace control. Built with Tauri and Rust for Windows and macOS.",
+  name: SITE.name,
+  description: SITE.description,
   applicationCategory: "UtilitiesApplication",
   operatingSystem: "Windows, macOS",
   offers: [

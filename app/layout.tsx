@@ -30,7 +30,7 @@ export const viewport: Viewport = {
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://kova.app"),
-  title: `${SITE.name} — ${SITE.tagline}`,
+  title: `${SITE.name} — System Monitor, Clipboard & Disk Cleanup for Windows & Mac`,
   description: SITE.description,
   alternates: {
     canonical: "/",
@@ -54,7 +54,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: `${SITE.name} — ${SITE.tagline}`,
     description: SITE.description,
-    images: ["/opengraph.png"],
+    images: ["/opengraph.jpg"],
   },
 };
 
