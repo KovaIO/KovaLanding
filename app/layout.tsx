@@ -29,7 +29,7 @@ export const viewport: Viewport = {
 };
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://kova.app"),
+  metadataBase: new URL("https://appkova.com"),
   title: `${SITE.name} — System Monitor, Clipboard & Disk Cleanup for Windows & Mac`,
   description: SITE.description,
   alternates: {
@@ -40,10 +40,10 @@ export const metadata: Metadata = {
     description: SITE.description,
     type: "website",
     siteName: SITE.name,
-    url: "https://kova.app",
+    url: "https://appkova.com",
     images: [
       {
-        url: "/opengraph.jpg",
+        url: "/opengraph-image.jpg",
         width: 1200,
         height: 630,
         alt: `${SITE.name} — ${SITE.tagline}`,
@@ -54,7 +54,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: `${SITE.name} — ${SITE.tagline}`,
     description: SITE.description,
-    images: ["/opengraph.jpg"],
+    images: ["/opengraph-image.jpg"],
   },
 };
 
