@@ -4,7 +4,7 @@ import { Hero } from "@/components/sections/Hero";
 import { Features } from "@/components/sections/Features";
 import { Pricing } from "@/components/sections/Pricing";
 import { FAQ } from "@/components/sections/FAQ";
-import { FAQ_ITEMS, SITE } from "@/lib/constants";
+import { SITE } from "@/lib/constants";
 
 const softwareSchema = {
   "@context": "https://schema.org",
@@ -27,21 +27,21 @@ const softwareSchema = {
       name: "Pro Monthly",
     },
   ],
-  url: "https://kova.app",
-  downloadUrl: "https://kova.app#download",
+  url: "https://appkova.com",
+  downloadUrl: "https://appkova.com#download",
 };
 
-const faqSchema = {
+const breadcrumbSchema = {
   "@context": "https://schema.org",
-  "@type": "FAQPage",
-  mainEntity: FAQ_ITEMS.map((item) => ({
-    "@type": "Question",
-    name: item.question,
-    acceptedAnswer: {
-      "@type": "Answer",
-      text: item.answer,
+  "@type": "BreadcrumbList",
+  itemListElement: [
+    {
+      "@type": "ListItem",
+      position: 1,
+      name: "Home",
+      item: "https://appkova.com",
     },
-  })),
+  ],
 };
 
 export default function Home() {
@@ -53,7 +53,7 @@ export default function Home() {
       />
       <script
         type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
       />
       <Header />
       <main className="flex-1">

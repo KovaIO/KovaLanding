@@ -12,6 +12,6 @@ export default function robots(): MetadataRoute.Robots {
         allow: "/",
       },
     ],
-    sitemap: "https://kova.app/sitemap.xml",
+    sitemap: "https://appkova.com/sitemap.xml",
   };
 }

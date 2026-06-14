@@ -1,0 +1,30 @@
+# Kova
+
+> A lightweight desktop utility for system monitoring, clipboard history, workspace profiles, and disk cleanup. Built with Tauri and Rust, runs from the tray on Windows and macOS.
+
+Kova is a fast, privacy-first desktop app that lives in your system tray. It combines system monitoring (CPU, memory, disk, network), clipboard history with search, workspace profiles for switching contexts, disk cleanup, and a quick launcher, all in one lightweight tool.
+
+## Key Features
+
+- **System Monitor**: Real-time CPU, memory, disk, and network metrics from the tray
+- **Clipboard History**: Searchable clipboard with pinning and favorites
+- **Workspace Profiles**: Switch between project contexts instantly
+- **Disk Cleanup**: Find and remove junk files to free up space
+- **Quick Launcher**: Open apps, files, and URLs with a keyboard shortcut
+- **Tray-native**: Runs quietly in the system tray, no dock clutter
+
+## Pricing
+
+- Free tier with core features
+- Pro at $2.99/month for advanced features
+
+## Platforms
+
+- Windows 10/11
+- macOS
+
+## Links
+
+- Website: https://appkova.com
+- Download: https://appkova.com#download
+- FAQ: https://appkova.com#faq
