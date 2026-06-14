@@ -6,8 +6,8 @@ export const SITE = {
 } as const;
 
 export const DOWNLOAD_URLS = {
-  windows: "https://api.appkova.com/updates/windows/kova_0.1.0_x64-setup.exe",
-  macos: "https://api.appkova.com/updates/macos/kova_0.1.0_aarch64.dmg",
+  windows: "https://api.appkova.com/updates/windows/kova_0.1.1_x64-setup.exe",
+  macos: "https://api.appkova.com/updates/macos/kova_0.1.1_aarch64.dmg",
 } as const;
 
 export const NAV_LINKS = [
