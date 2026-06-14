@@ -134,6 +134,7 @@ export function Pricing() {
                   <Button
                     variant={plan.highlighted ? "primary" : "secondary"}
                     className="w-full text-center"
+                    href="#download"
                   >
                     {plan.cta}
                   </Button>

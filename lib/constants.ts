@@ -5,6 +5,11 @@ export const SITE = {
     "A lightweight desktop utility for system monitoring, clipboard history, workspace profiles, and disk cleanup. Built with Tauri and Rust, runs from the tray on Windows and macOS.",
 } as const;
 
+export const DOWNLOAD_URLS = {
+  windows: "https://api.appkova.com/updates/windows/kova_0.1.0_x64-setup.exe",
+  macos: "https://api.appkova.com/updates/macos/kova_0.2.0_aarch64.dmg",
+} as const;
+
 export const NAV_LINKS = [
   { label: "Features", href: "#features" },
   { label: "Pricing", href: "#pricing" },
@@ -16,7 +21,8 @@ export const BENTO_FEATURES = [
     id: "workflow",
     badge: "Workflows",
     title: "Launch your setup in one click.",
-    description: "Create workspace profiles that open and arrange your apps exactly where you want them.",
+    description:
+      "Create workspace profiles that open and arrange your apps exactly where you want them.",
     layout: "wide",
     video: { src: "/Workspaces.mp4", orientation: "horizontal" },
   },
@@ -24,7 +30,8 @@ export const BENTO_FEATURES = [
     id: "monitoring",
     badge: "System Monitor",
     title: "CPU, RAM, disk and network at a glance.",
-    description: "Live resource metrics with per-process breakdowns. Spot what's slowing you down.",
+    description:
+      "Live resource metrics with per-process breakdowns. Spot what's slowing you down.",
     layout: "narrow",
     video: { src: "/Metrics.mp4", orientation: "vertical" },
   },
@@ -32,7 +39,8 @@ export const BENTO_FEATURES = [
     id: "clipboard",
     badge: "Clipboard",
     title: "Everything you copied, still there.",
-    description: "Searchable history for text and images. Paste, save, or open in Explorer. All stored locally.",
+    description:
+      "Searchable history for text and images. Paste, save, or open in Explorer. All stored locally.",
     layout: "narrow",
     video: { src: "/Clipboard.mp4", orientation: "vertical" },
   },
@@ -48,7 +56,8 @@ export const BENTO_FEATURES = [
     id: "cleanup",
     badge: "Disk Cleanup",
     title: "Reclaim space without the guesswork.",
-    description: "Scan caches, logs and large folders. Review before you delete. Nothing happens without your say.",
+    description:
+      "Scan caches, logs and large folders. Review before you delete. Nothing happens without your say.",
     layout: "narrow",
     video: { src: "/Disk.mp4", orientation: "vertical" },
   },
