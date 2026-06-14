@@ -8,5 +8,11 @@ export default function sitemap(): MetadataRoute.Sitemap {
       changeFrequency: "monthly",
       priority: 1,
     },
+    {
+      url: "https://appkova.com/success",
+      lastModified: new Date(),
+      changeFrequency: "never",
+      priority: 0,
+    },
   ];
 }

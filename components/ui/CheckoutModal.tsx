@@ -77,7 +77,7 @@ export function CheckoutModal({ open, onClose, productId }: Props) {
           body: JSON.stringify({
             email,
             product_id: productId,
-            success_url: window.location.origin,
+            success_url: `${window.location.origin}/success`,
           }),
         },
       );
